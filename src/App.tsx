@@ -1,95 +1,74 @@
-// App.tsx
-
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import UserPage from './pages/UserPage';
 import PetPage from './pages/PetPage';
 import ServicePage from './pages/ServicePage';
 import ServiceCategoryPage from './pages/ServiceCategoryPage';
-import Modal from './pages/ModalRegistration';
-import LoginModal from './pages/ModalLogin';
+import RegistrationPage from './pages/RegistrationPage';
+import LoginPage from './pages/LoginPage';
 import Contacts from './pages/Contacts';
-import Home from './pages/Home'; 
-import FooterPage from './pages/Footer'; 
+import Home from './pages/Home';
+import FooterPage from './pages/Footer';
 import myImage from './asets/logo.jpg';
 
 const App: React.FC = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
-
-  const handleOpenModal = () => setShowModal(true);
-  const handleCloseModal = () => setShowModal(false);
-
-  const handleOpenLoginModal = () => setShowLoginModal(true);
-  const handleCloseLoginModal = () => setShowLoginModal(false);
-
   return (
     <Router>
-      <div>
+      <div className="min-h-screen flex flex-col">
         {/* Navigation panel */}
-        <div className="pt-3 text-center pb-5 grid grid-cols-3 bg-white">
+        <div className="flex items-center justify-between px-8 py-4 bg-white shadow-md">
           {/* Left navigation */}
-          <div>
-            <nav>
-              <ul className="flex space-x-2 ml-2">
-                <Link to="/user">
-                  <li className="cursor-pointer hover:text-white hover:bg-theme-blue px-2 py-1 rounded-sm">
-                    Profile
-                  </li>
-                </Link>
-                <Link to="/categories">
-                  <li className="cursor-pointer hover:text-white hover:bg-theme-blue px-2 py-1 rounded-sm">
-                    Categories
-                  </li>
-                </Link>
-                <Link to="/contacts">
-                  <li className="cursor-pointer hover:text-white hover:bg-theme-blue px-2 py-1 rounded-sm">
-                    Contacts
-                  </li>
-                </Link>
-              </ul>
-            </nav>
-          </div>
+          <nav className="flex space-x-6">
+            <Link to="/categories" className="text-gray-700 hover:text-theme-blue">
+              Categories
+            </Link>
+            <Link to="/contacts" className="text-gray-700 hover:text-theme-blue">
+              Contacts
+            </Link>
+          </nav>
 
-          {/* logo */}
-          <div>
-            <Link to="/" className="grid place-items-center">
-              <img src={myImage} alt="Logo" className="w-3/5" />
+          {/* Logo */}
+          <div className="flex justify-center">
+            <Link to="/">
+              <img src={myImage} alt="Logo" className="h-16 w-auto" /> {/* Увеличено с h-14 до h-16 */}
             </Link>
           </div>
 
-          {/* Righ navigation */}
-          <div className="space-x-2">
-            <button
-              onClick={handleOpenModal}
-              className="hover:text-white hover:bg-theme-blue px-2 py-1 rounded-sm"
-            >
+          {/* Right navigation */}
+          <div className="flex items-center space-x-4">
+            <a href="/user" className="hover:text-theme-blue">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/8188/8188360.png"
+                alt="Profile Icon"
+                className="h-6 w-6"
+              />
+            </a>
+            <Link to="/register" className="text-gray-700 hover:text-theme-blue">
               Sign up
-            </button>
-            <button
-              onClick={handleOpenLoginModal}
-              className="hover:text-white hover:bg-theme-blue px-2 py-1 rounded-sm"
-            >
+            </Link>
+            <Link to="/login" className="text-gray-700 hover:text-theme-blue">
               Log in
-            </button>
+            </Link>
           </div>
         </div>
 
-        {/* Routing */}
-        <Routes>
-          <Route path="/" element={<Home />} /> {/* Главная страница */}
-          <Route path="/user" element={<UserPage />} />
-          <Route path="/pets" element={<PetPage />} />
-          <Route path="/services" element={<ServicePage />} />
-          <Route path="/categories" element={<ServiceCategoryPage />} />
-          <Route path="/contacts" element={<Contacts />} />
-        </Routes>
+        {/* Main Content */}
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} /> {/* Главная страница */}
+            <Route path="/user" element={<UserPage />} />
+            <Route path="/pets" element={<PetPage />} />
+            <Route path="/services" element={<ServicePage />} />
+            <Route path="/categories" element={<ServiceCategoryPage />} />
+            <Route path="/contacts" element={<Contacts />} />
+            <Route path="/register" element={<RegistrationPage />} />
+            <Route path="/login" element={<LoginPage />} />
+          </Routes>
+        </div>
 
-        {/* Modal windows*/}
-        <Modal show={showModal} onClose={handleCloseModal} />
-        <LoginModal show={showLoginModal} onClose={handleCloseLoginModal} />
+        {/* Footer */}
+        <FooterPage />
       </div>
-      <FooterPage/>
     </Router>
   );
 };
