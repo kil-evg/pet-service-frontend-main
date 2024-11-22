@@ -3,7 +3,7 @@ import React from 'react';
 const Contacts: React.FC = () => {
     return (
         <div>
-            <h1 className='text-[18px] font-bold text-center mb-6 mt-8'>Contacts</h1>
+            <h1 className='text-xxl text-center mb-8 mt-8'>Contacts</h1>
             <div className='text-center space-y-4 self-center'>
             <p>
                 Email: info@petsitters.pl</p>

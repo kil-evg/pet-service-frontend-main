@@ -27,12 +27,13 @@ const App: React.FC = () => {
             </Link>
           </nav>
 
-        {/* Logo */}
-<div className="flex justify-center">
-  <Link to="/">
-    <img src={myImage} alt="Logo" className="h-[72px]" />
-  </Link>
-</div>
+          {/* Logo */}
+          <div className="flex justify-center">
+            <Link to="/">
+              <img src={myImage} alt="Logo" className="h-16 w-auto" /> {/* Увеличено с h-14 до h-16 */}
+            </Link>
+          </div>
+
           {/* Right navigation */}
           <div className="flex items-center space-x-4">
             <a href="/user" className="hover:text-theme-blue">

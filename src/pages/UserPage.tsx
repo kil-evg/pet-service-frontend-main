@@ -6,7 +6,7 @@ const UserPage: React.FC = () => {
   return (
     <div>
       <div>
-        <h1 className='text-[18px] font-bold text-center mb-6 mt-8'>My Profile</h1>
+        <h1 className='text-xxl text-center mb-8 mt-8'>My Profile</h1>
       </div>
       <div className='grid md:grid-cols-4 sm:grid-cols-1 '>
         <div className="rounded-full md:col-start-2 sm:grid-cols-1 place-items-center">
