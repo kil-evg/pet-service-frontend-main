@@ -1,19 +1,12 @@
 
-// Home.tsx
-import React from 'react';
-import Categories from './ServiceCategoryPage';
 // src/pages/Home.tsx
 import React from 'react';
-import backgroundImage from '../asets/images/main.jpg'; // Must change on "assets"
-import ServiceCategoryPage from './ServiceCategoryPage';
+import ServiceCategoryPage from './ServiceCategoryPage'; // 
+import backgroundImage from '../asets/images/main.jpg'; // 
 
 const Home: React.FC = () => {
   return (
     <div>
-      <h1 className="text-xxl text-center mb-8 mt-8">Welcome to Pet Service</h1>
-      <p className="text-center">
-            <Categories />
-      </p>
       {/* Header section with background image and welcome message */}
       <div
         className="relative bg-cover bg-center"
@@ -23,9 +16,9 @@ const Home: React.FC = () => {
         }}
       >
         {/* Overlay to darken the background image */}
-        <div className="absolute inset-0 bg-black opacity-30"></div>
+        <div className="absolute inset-0 bg-black opacity-30 z-10"></div> {/* Добавлен z-10 */}
         {/* Content inside the header */}
-        <div className="relative z-10 flex flex-col items-center justify-center h-full px-4">
+        <div className="relative z-20 flex flex-col items-center justify-center h-full px-4"> {/* Добавлен z-20 */}
           <h1 className="text-[54px] font-bold text-center mb-6 mt-2 text-white leading-tight">
             Welcome to Pet Service
           </h1>

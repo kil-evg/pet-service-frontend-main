@@ -1,5 +1,5 @@
 // src/pages/ModalLogin.tsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface LoginModalProps {
     show: boolean;
@@ -8,6 +8,16 @@ interface LoginModalProps {
 
 const LoginModal: React.FC<LoginModalProps> = ({ show, onClose }) => {
     if (!show) return null;
+
+    const [serviceCategories, setServiceCategories] = useState([]);
+  useEffect(() => {
+   fetchServiceCategories();
+  }, []);
+ function fetchServiceCategories() {
+    fetch('/api/login')
+     .then((response) => response.json())
+     .then((data) => setServiceCategories(data));
+ }
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50"> {/* Добавлен z-50 */}
