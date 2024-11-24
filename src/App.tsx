@@ -35,6 +35,7 @@ const App: React.FC = () => {
           </div>
 
           {/* Right navigation */}
+          
           <div className="flex items-center space-x-4">
             <a href="/user" className="hover:text-theme-blue">
               <img
@@ -67,8 +68,9 @@ const App: React.FC = () => {
         </div>
 
         {/* Footer */}
-        <FooterPage />
+        
       </div>
+      <FooterPage />
     </Router>
   );
 };

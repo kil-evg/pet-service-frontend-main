@@ -1,21 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const RegistrationPage: React.FC = () => {
-    const handleSubmit = (e: React.FormEvent) => {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleChange = (setter: React.Dispatch<React.SetStateAction<string>>) =>
+        (e: React.ChangeEvent<HTMLInputElement>) => setter(e.target.value);
+
+    const signUp = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Add registration handling logic here
+        const item = { firstName, lastName, email, password };
+
+        try {
+            const response = await fetch("http://localhost:8080/api/auth/register", {
+                method: 'POST',
+                body: JSON.stringify(item),
+                headers: { "Content-Type": 'application/json' }
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                localStorage.setItem('firstName', result.token);
+                console.log("Registration successful:", result);
+                
+            } else {
+                console.error("Registration failed:", result.message || "Unknown error");
+            }
+        } catch (error) {
+            console.error("Error during registration:", error);
+        }
     };
 
     return (
         <div className="min-h-screen bg-gray-100 flex items-start justify-center pt-12 px-4">
-            <form onSubmit={handleSubmit} className="max-w-lg w-4/5 scale-90">
+            <form onSubmit={signUp} className="max-w-lg w-4/5 scale-90">
                 <h2 className="text-2xl font-semibold mb-6 text-center">Register</h2>
                 <div className="mb-4">
-                    <label htmlFor="name" className="block text-gray-700 mb-2">Name:</label>
+                    <label htmlFor="firstName" className="block text-gray-700 mb-2">First Name:</label>
                     <input
+                        value={firstName}
+                        onChange={handleChange(setFirstName)}
                         type="text"
-                        id="name"
-                        name="name"
+                        id="firstName"
+                        name="firstName"
+                        className="w-full p-2 border border-gray-300 rounded"
+                        required
+                    />
+                </div>
+                <div className="mb-4">
+                    <label htmlFor="lastName" className="block text-gray-700 mb-2">Last Name:</label>
+                    <input
+                        value={lastName}
+                        onChange={handleChange(setLastName)}
+                        type="text"
+                        id="lastName"
+                        name="lastName"
                         className="w-full p-2 border border-gray-300 rounded"
                         required
                     />
@@ -23,6 +64,8 @@ const RegistrationPage: React.FC = () => {
                 <div className="mb-4">
                     <label htmlFor="email" className="block text-gray-700 mb-2">Email:</label>
                     <input
+                        value={email}
+                        onChange={handleChange(setEmail)}
                         type="email"
                         id="email"
                         name="email"
@@ -33,6 +76,8 @@ const RegistrationPage: React.FC = () => {
                 <div className="mb-4">
                     <label htmlFor="password" className="block text-gray-700 mb-2">Password:</label>
                     <input
+                        value={password}
+                        onChange={handleChange(setPassword)}
                         type="password"
                         id="password"
                         name="password"
