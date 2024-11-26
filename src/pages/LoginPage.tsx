@@ -1,33 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../App';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage: React.FC = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const navigate = useNavigate();
+
+    const { setIsLoggedIn, setIsLoggedOut } = useContext(AuthContext);
 
     const handleChange = (setter: React.Dispatch<React.SetStateAction<string>>) =>
         (e: React.ChangeEvent<HTMLInputElement>) => setter(e.target.value);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const credentials = {firstName, lastName, email, password };
+        const credentials = { email, password };
 
         try {
-            const response = await fetch("http://localhost:8080/api/auth/login", {
+            const response = await fetch("/api/auth/login", {
                 method: 'POST',
                 body: JSON.stringify(credentials),
-                headers: { "Content-Type": 'application/json' }
+                headers: { "Content-Type": 'application/json' },
             });
 
             const result = await response.json();
             if (response.ok) {
-                // Save the token to localStorage or another storage method
                 localStorage.setItem('authToken', result.token);
-                console.log("Login successful:", result);
-                // Redirect the user or update the UI
-                alert('Login successful!');
+                setIsLoggedIn(true);
+                setIsLoggedOut(false);
+                navigate("/profile");
+
             } else {
                 setError(result.message || "Login failed. Please try again.");
             }
@@ -38,16 +41,11 @@ const LoginPage: React.FC = () => {
     };
 
     return (
-        
         <div className="min-h-screen bg-gray-100 flex items-start justify-center pt-12 px-4">
             <form onSubmit={handleSubmit} className="max-w-lg w-4/5 scale-90">
                 <h2 className="text-2xl font-semibold mb-6 text-center">Log In</h2>
 
-                {error && (
-                    <div className="mb-4 text-red-500 text-center">
-                        {error}
-                    </div>
-                )}
+                {error && <div className="mb-4 text-red-500 text-center">{error}</div>}
 
                 <div className="mb-4">
                     <label htmlFor="email" className="block text-gray-700 mb-2">Email:</label>
@@ -73,21 +71,6 @@ const LoginPage: React.FC = () => {
                         className="w-full p-2 border border-gray-300 rounded"
                         required
                     />
-                </div>
-
-                <div className="flex items-center mb-4">
-                    <input type="checkbox" id="remember" name="remember" className="mr-2" />
-                    <label htmlFor="remember" className="text-sm">Remember me</label>
-                </div>
-
-                <div className="mb-4">
-                    <button
-                        type="button"
-                        className="text-blue-500 text-sm underline"
-                        onClick={() => alert('Forgot password clicked')}
-                    >
-                        Forgot your password?
-                    </button>
                 </div>
 
                 <button

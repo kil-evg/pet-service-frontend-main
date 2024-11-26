@@ -14,7 +14,7 @@ const RegistrationPage: React.FC = () => {
         const item = { firstName, lastName, email, password };
 
         try {
-            const response = await fetch("http://localhost:8080/api/auth/register", {
+            const response = await fetch("/api/auth/register", {
                 method: 'POST',
                 body: JSON.stringify(item),
                 headers: { "Content-Type": 'application/json' }
@@ -22,9 +22,9 @@ const RegistrationPage: React.FC = () => {
 
             const result = await response.json();
             if (response.ok) {
-                localStorage.setItem('firstName', result.token);
+                localStorage.setItem('firstName', result.firstName);
                 console.log("Registration successful:", result);
-                
+
             } else {
                 console.error("Registration failed:", result.message || "Unknown error");
             }

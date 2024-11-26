@@ -8,7 +8,7 @@ const ServiceCategoryPage: React.FC = () => {
     fetchServiceCategories();
   }, []);
   function fetchServiceCategories() {
-    fetch('/api/services_category')
+    fetch('/api/services_categories')
       .then((response) => response.json())
       .then((data) => setServiceCategories(data));
   }
