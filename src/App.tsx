@@ -4,6 +4,8 @@ import UserPage from './pages/UserPage';
 import PetPage from './pages/PetPage';
 import ServicePage from './pages/ServicePage';
 import ServiceCategoryPage from './pages/ServiceCategoryPage';
+import ServiceListPage from './pages/ServiceListPage';
+import BookingPage from './pages/BookingPage';
 import RegistrationPage from './pages/RegistrationPage';
 import LoginPage from './pages/LoginPage';
 import Contacts from './pages/Contacts';
@@ -30,7 +32,7 @@ const App: React.FC = () => {
           {/* Logo */}
           <div className="flex justify-center">
             <Link to="/">
-              <img src={myImage} alt="Logo" className="h-16 w-auto" /> {/* Увеличено с h-14 до h-16 */}
+              <img src={myImage} alt="Logo" className="h-16 w-auto" />
             </Link>
           </div>
 
@@ -55,10 +57,12 @@ const App: React.FC = () => {
         {/* Main Content */}
         <div className="flex-grow">
           <Routes>
-            <Route path="/" element={<Home />} /> {/* Главная страница */}
+            <Route path="/" element={<Home />} />
             <Route path="/user" element={<UserPage />} />
             <Route path="/pets" element={<PetPage />} />
             <Route path="/services" element={<ServicePage />} />
+            <Route path="/services/:categoryName" element={<ServiceListPage />} />
+            <Route path="/booking/:serviceId" element={<BookingPage />} />
             <Route path="/categories" element={<ServiceCategoryPage />} />
             <Route path="/contacts" element={<Contacts />} />
             <Route path="/register" element={<RegistrationPage />} />
