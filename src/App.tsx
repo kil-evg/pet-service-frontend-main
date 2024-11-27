@@ -4,6 +4,8 @@ import UserPage from './pages/UserPage';
 import PetPage from './pages/PetPage';
 import ServicePage from './pages/ServicePage';
 import ServiceCategoryPage from './pages/ServiceCategoryPage';
+import ServiceListPage from './pages/ServiceListPage';
+import BookingPage from './pages/BookingPage';
 import RegistrationPage from './pages/RegistrationPage';
 import LoginPage from './pages/LoginPage';
 import Contacts from './pages/Contacts';
@@ -49,7 +51,6 @@ const App: React.FC = () => {
             {/* Right navigation */}
             <div className="flex items-center space-x-4">
               {isLoggedIn ? (
-                // Отображается, если пользователь вошел
                 <>
                   <a href="/user" className="hover:text-theme-blue">
                     <img
@@ -59,8 +60,7 @@ const App: React.FC = () => {
                     />
                   </a>
                 </>
-              ) :  (
-                // Отображается, если пользователь не вошел
+              ) : (
                 <>
                   <Link to="/register" className="text-gray-700 hover:text-theme-blue">
                     Sign up
@@ -68,7 +68,6 @@ const App: React.FC = () => {
                   <Link to="/login" className="text-gray-700 hover:text-theme-blue">
                     Log in
                   </Link>
-
                 </>
               )}
             </div>
@@ -77,21 +76,22 @@ const App: React.FC = () => {
           {/* Main Content */}
           <div className="flex-grow">
             <Routes>
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/profile" element={<UserPage />} />
               <Route path="/" element={<Home />} />
               <Route path="/user" element={<UserPage />} />
               <Route path="/pets" element={<PetPage />} />
               <Route path="/services" element={<ServicePage />} />
+              <Route path="/services/:categoryName" element={<ServiceListPage />} />
+              <Route path="/booking/:serviceId" element={<BookingPage />} />
               <Route path="/categories" element={<ServiceCategoryPage />} />
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/register" element={<RegistrationPage />} />
+              <Route path="/login" element={<LoginPage />} />
             </Routes>
           </div>
 
           {/* Footer */}
+          <FooterPage />
         </div>
-        <FooterPage />
       </Router>
     </AuthContext.Provider>
   );
