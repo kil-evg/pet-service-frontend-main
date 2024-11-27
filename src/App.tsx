@@ -59,7 +59,7 @@ const App: React.FC = () => {
                     />
                   </a>
                 </>
-              ) : (
+              ) :  (
                 // Отображается, если пользователь не вошел
                 <>
                   <Link to="/register" className="text-gray-700 hover:text-theme-blue">
