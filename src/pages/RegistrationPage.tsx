@@ -1,11 +1,13 @@
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const RegistrationPage: React.FC = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleChange = (setter: React.Dispatch<React.SetStateAction<string>>) =>
         (e: React.ChangeEvent<HTMLInputElement>) => setter(e.target.value);
@@ -24,7 +26,7 @@ const RegistrationPage: React.FC = () => {
             const result = await response.json();
             if (response.ok) {
                 localStorage.setItem('firstName', result.firstName);
-                console.log("Registration successful:", result);
+                navigate('/login');
 
             } else {
                 console.error("Registration failed:", result.message || "Unknown error");

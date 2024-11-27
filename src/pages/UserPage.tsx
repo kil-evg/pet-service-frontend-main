@@ -137,18 +137,20 @@ const UserProfilePage: React.FC = () => {
                                 className="w-full border border-gray-300 rounded px-3 py-2"
                             />
                         </div>
+                        <div className="flex space-x-2">
                         <button
                             onClick={handleSave}
-                            className="mt-4 w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                            className="mt-2 w-1/2  bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                         >
                             Save
                         </button>
                         <button
                             onClick={() => setIsEditing(false)}
-                            className="mt-2 w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+                            className="mt-2 w-1/2  bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
                         >
                             Cancel
                         </button>
+                        </div>
                     </>
                 ) : (
                     <>
