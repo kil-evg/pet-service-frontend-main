@@ -1,3 +1,4 @@
+
 import React from 'react';
 import myImage from '../asets/logo.png'; // Убедитесь, что путь к изображению правильный
 

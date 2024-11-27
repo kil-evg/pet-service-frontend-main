@@ -1,4 +1,5 @@
 
+
 // src/pages/Home.tsx
 import React from 'react';
 import ServiceCategoryPage from './ServiceCategoryPage'; // 
@@ -84,3 +85,4 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+
