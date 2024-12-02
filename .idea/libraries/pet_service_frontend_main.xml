@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="pet-service-frontend-main">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/pet-care-with-registration.zip!/" />
+      <root url="jar://$PROJECT_DIR$/pets-care.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
