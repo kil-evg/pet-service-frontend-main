@@ -158,6 +158,7 @@ const UserProfilePage: React.FC = () => {
                 <p><strong>Last name:</strong> {user.lastName}</p>
                 <p><strong>Email:</strong> {user.email}</p>
                 <p><strong>Description:</strong> {user.description}</p>
+                <p><strong>Rating:</strong> {user.averageStars.toFixed(1)}</p>
                 <button
                     onClick={() => setIsEditing(true)}
                     className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
